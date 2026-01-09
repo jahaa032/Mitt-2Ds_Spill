@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbbt63yy01dhc"]
+
+[ext_resource type="Texture2D" uid="uid://dlp8cd5sllenv" path="res://spritesheet_players.png" id="1_rwpr1"]
+[ext_resource type="Script" uid="uid://c10pdjs1awmc8" path="res://player.gd" id="1_tbw7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0tsy"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(128, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48oh0"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(0, 1024, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38bhn"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(0, 1280, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8674f"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(0, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0kvd"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(0, 256, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqth2"]
+atlas = ExtResource("1_rwpr1")
+region = Rect2(0, 768, 128, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7d7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0tsy")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48oh0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38bhn")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8674f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0kvd")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqth2")
+}],
+"loop": true,
+"name": &"wings",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b8x7t"]
+radius = 42.0
+height = 128.0
+
+[node name="player_tscn" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 10
+collision_mask = 9
+floor_stop_on_slope = false
+script = ExtResource("1_tbw7b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.750002, -31)
+sprite_frames = SubResource("SpriteFrames_p7d7x")
+animation = &"crouch"
+frame_progress = 0.854743
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 42)
+shape = SubResource("CapsuleShape2D_b8x7t")
+
+[node name="MagicSpawnPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

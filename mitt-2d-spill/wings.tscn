@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv647xgctl1ne"]
+
+[ext_resource type="Script" uid="uid://ckguosmpqadvi" path="res://wings.gd" id="1_gcf74"]
+[ext_resource type="Texture2D" uid="uid://5ctxxp14rto6" path="res://spritesheet_tiles.png" id="2_v12wg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fskav"]
+atlas = ExtResource("2_v12wg")
+region = Rect2(256, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x62y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fskav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_apx35"]
+radius = 30.0157
+height = 103.866
+
+[node name="Wings" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_gcf74")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -5)
+sprite_frames = SubResource("SpriteFrames_3x62y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 24)
+rotation = 1.54556
+shape = SubResource("CapsuleShape2D_apx35")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

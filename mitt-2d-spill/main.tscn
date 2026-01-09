@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://caovsu28ual28"]
+
+[ext_resource type="Script" uid="uid://djysroa3coalg" path="res://staff.gd" id="1_n5s63"]
+[ext_resource type="Texture2D" uid="uid://beg07p5pv3fva" path="res://Elementstäbe.png" id="2_pkamj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4512t"]
+atlas = ExtResource("2_pkamj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tnuk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4512t")
+}],
+"loop": true,
+"name": &"staff",
+"speed": 5.0
+}]
+
+[node name="main" type="Node2D"]
+
+[node name="Staff" type="Node2D" parent="."]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_n5s63")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Staff"]
+position = Vector2(-6.4, 3.6)
+rotation = 1.14068
+sprite_frames = SubResource("SpriteFrames_3tnuk")
+animation = &"staff"
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="Cooldown" to="Staff" method="_on_cooldown_timeout"]

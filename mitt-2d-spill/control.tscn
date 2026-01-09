@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdndgx7mwqie5"]
+
+[ext_resource type="Script" uid="uid://dkdw6hj2jv81v" path="res://control.gd" id="1_qnyah"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qnyah")
+
+[node name="CoinsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 113.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 30
+text = "Coins: 0"
+
+[node name="LivesLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = -75.0
+offset_right = 257.0
+offset_bottom = -33.0
+theme_override_font_sizes/font_size = 30
+text = "Lives: 3
+"
+
+[node name="WingsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 98.0
+offset_right = 119.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 30
+text = "Wings: 0"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 66.0
+offset_right = 114.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 30
+text = "Score: 0
+"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkas6xdtigt0r"]
+
+[sub_resource type="Gradient" id="Gradient_f18u2"]
+offsets = PackedFloat32Array(0.0166667, 0.0933333, 0.59, 0.78, 0.886667, 0.893333)
+colors = PackedColorArray(0.74, 0.0148, 0.0148, 1, 0.81, 0.34425, 0.2025, 1, 0.99, 0.0495, 0, 1, 0.3904, 0.51118, 0.61, 1, 0.3904, 0.51118, 0.61, 0, 0.3904, 0.51118, 0.61, 0)
+
+[node name="Magic" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." groups=["Enemy"]]
+amount = 2000
+lifetime = 0.3
+speed_scale = 0.35
+randomness = 0.86
+emission_shape = 1
+emission_sphere_radius = 86.0
+spread = 21.0
+gravity = Vector2(-3000, 0)
+initial_velocity_min = 590.91
+initial_velocity_max = 590.91
+angular_velocity_min = -515.0
+linear_accel_max = 60.0
+scale_amount_max = 11.0
+color_ramp = SubResource("Gradient_f18u2")

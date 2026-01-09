@@ -1,0 +1,85 @@
+[gd_scene load_steps=17 format=3 uid="uid://defe6wtrlwejc"]
+
+[ext_resource type="PackedScene" uid="uid://dkas6xdtigt0r" path="res://magic.tscn" id="1_73c20"]
+[ext_resource type="Script" uid="uid://cm2376yde0arl" path="res://magic_area.gd" id="1_dav1w"]
+[ext_resource type="Texture2D" uid="uid://dfv43mwa1gwd0" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0018.png" id="3_ovhut"]
+[ext_resource type="Texture2D" uid="uid://djcx8r46ik2xc" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0019.png" id="4_44rt8"]
+[ext_resource type="Texture2D" uid="uid://b6g2ox7w37gdr" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0020.png" id="5_njylb"]
+[ext_resource type="Texture2D" uid="uid://dgavjvbdifgbd" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0021.png" id="6_y5gyq"]
+[ext_resource type="Texture2D" uid="uid://euxmnwfqr2v6" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0022.png" id="7_c462v"]
+[ext_resource type="Texture2D" uid="uid://cck2616s662gm" path="res://Fireballs by Weentermakesgames/FireballNoline/FireballsNoline0023.png" id="8_1v1su"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fijhm"]
+radius = 70.0643
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0tsq"]
+atlas = ExtResource("3_ovhut")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xabe"]
+atlas = ExtResource("4_44rt8")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgsdh"]
+atlas = ExtResource("5_njylb")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_led6b"]
+atlas = ExtResource("6_y5gyq")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81urn"]
+atlas = ExtResource("7_c462v")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j715"]
+atlas = ExtResource("8_1v1su")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb4wn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0tsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xabe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgsdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_led6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81urn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j715")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 5.0
+}]
+
+[node name="MagicArea" type="Area2D" groups=["Enemy"]]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_dav1w")
+
+[node name="Magic" parent="." instance=ExtResource("1_73c20")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 3)
+shape = SubResource("CircleShape2D_fijhm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hb4wn")
+animation = &"fireball"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

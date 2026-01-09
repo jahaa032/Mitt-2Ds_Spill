@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bikcymb1uk7vw"]
+
+[ext_resource type="Texture2D" uid="uid://pkwnkhyvnjes" path="res://spritesheet_ground.png" id="2_xileh"]
+
+[sub_resource type="Resource" id="Resource_mi635"]
+metadata/__load_path__ = "res://Moving_Platform.gd"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x8me"]
+atlas = ExtResource("2_xileh")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pjmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x8me")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jsgfm"]
+radius = 42.0118
+height = 218.023
+
+[node name="Platform" type="CharacterBody2D"]
+script = SubResource("Resource_mi635")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(595, 398.5)
+scale = Vector2(1.48438, 0.789063)
+sprite_frames = SubResource("SpriteFrames_4pjmi")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(601, 392)
+rotation = -1.57484
+shape = SubResource("CapsuleShape2D_jsgfm")
