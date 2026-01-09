@@ -86,8 +86,7 @@ script = ExtResource("1_tbw7b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.750002, -31)
 sprite_frames = SubResource("SpriteFrames_p7d7x")
-animation = &"crouch"
-frame_progress = 0.854743
+animation = &"run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
